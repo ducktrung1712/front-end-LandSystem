@@ -1,0 +1,129 @@
+/* home.css */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --hover-color: #2980b9;
+    --background-gradient: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    --text-light: #ecf0f1;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .dashboard-sidebar {
+    width: 280px;
+    background: var(--background-gradient);
+    color: var(--text-light);
+    box-shadow: var(--shadow);
+    padding: 20px 0;
+    position: relative;
+  }
+  
+  .sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .sidebar-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  
+  .header-divider {
+    height: 4px;
+    background: var(--secondary-color);
+    width: 50%;
+    margin-top: 10px;
+    border-radius: 2px;
+  }
+  
+  .menu-list {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+  }
+  
+  .menu-list li {
+    margin: 8px 0;
+  }
+  
+  .menu-button {
+    width: 100%;
+    padding: 15px 25px;
+    border: none;
+    background: transparent;
+    color: var(--text-light);
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+  }
+  
+  .menu-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    padding-left: 30px;
+  }
+  
+  .menu-button.active {
+    background: var(--secondary-color);
+    font-weight: 500;
+  }
+  
+  .menu-button.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--text-light);
+  }
+  
+  .menu-icon {
+    font-size: 1.2rem;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .logout-item {
+    margin-top: 20px;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    padding-top: 15px;
+  }
+  
+  .logout-button {
+    color: #e74c3c !important;
+  }
+  
+  .logout-button:hover {
+    background: rgba(231, 76, 60, 0.1) !important;
+  }
+  
+  /* Hiệu ứng khi click */
+  .menu-button:active {
+    transform: scale(0.98);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .dashboard-sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    
+    .menu-button {
+      padding: 12px 20px;
+    }
+  }

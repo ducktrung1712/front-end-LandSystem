@@ -1,0 +1,116 @@
+/* Tạo giao diện trung tâm cho form đăng nhập */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #f2f2f2;
+}
+
+/* Style cho form đăng nhập */
+.login-form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input {
+  /* Đặt width 100% để chiếm toàn bộ chiều rộng của container */
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Container cho input mật khẩu và nút toggle */
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  width: 89%;
+  /* Thêm padding phải để nút toggle không chồng lên text */
+  padding-right: 40px;
+}
+
+/* Nút ẩn/hiện mật khẩu sử dụng icon, đặt bên trong input */
+.toggle-password {
+  position: absolute;
+  top: -11%;
+  right: -16px;
+  /* transform: translateY(-50%);
+  background: transparent; */
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #007bff;
+  outline: none;
+}
+
+.toggle-password-unbackground {
+  color: black !important;
+  background: none !important;
+}
+
+/* Style cho nút đăng nhập */
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background: #0056b3;
+}
+
+/* Container cho liên kết đăng ký và quên mật khẩu */
+.additional-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.additional-links a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.additional-links a:hover {
+  text-decoration: underline;
+}
+
+/* Style cho thông báo */
+.message {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #d9534f;
+}

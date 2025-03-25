@@ -1,0 +1,157 @@
+/* WorkGroupManagement.css */
+
+.workgroup-management {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+  
+  h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  
+  .add-workgroup-button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .add-workgroup-button:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  }
+  
+  .table-container {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+  }
+  
+  .workgroup-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+  }
+  
+  .workgroup-table thead {
+    background: #34495e;
+    color: white;
+  }
+  
+  .workgroup-table th, .workgroup-table td {
+    padding: 1rem;
+    text-align: left;
+  }
+  
+  
+  
+  .status-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .status-in-progress {
+    background: #f39c12;
+    color: white;
+  }
+  
+  .status-completed {
+    background: #27ae60;
+    color: white;
+  }
+
+  .workgroup-image {
+    width: 80px; /* Đặt kích thước ảnh cố định */
+    height: 80px;
+    object-fit: cover; /* Giúp ảnh không bị méo khi hiển thị */
+    border-radius: 8px; /* Bo góc nhẹ cho ảnh */
+    border: 1px solid #ddd; /* Viền nhẹ để tách ảnh khỏi nền */
+    display: block;
+    margin: auto;
+  }
+  
+  
+  .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .edit-button {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .delete-button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .edit-button:hover, .delete-button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem 0;
+  }
+  
+  .pagination button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #3498db;
+    background-color: #f8f9fa;
+    color: #3498db;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pagination button.active {
+    background-color: #3498db;
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .table-container {
+      overflow-x: auto;
+    }
+  
+    .workgroup-table {
+      min-width: 800px;
+    }
+  }
+  

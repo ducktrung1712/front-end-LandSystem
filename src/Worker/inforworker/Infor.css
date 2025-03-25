@@ -1,0 +1,67 @@
+.personal-container {
+  padding: 30px;
+  max-width: 500px;
+  margin: 40px auto;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(to right, #ffffff, #f1f1f1);
+  border-radius: 12px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.personal-title {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.personal-info p {
+  font-size: 18px;
+  color: #444;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.personal-info p:last-child {
+  border-bottom: none;
+}
+
+.personal-info input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* .edit-button,  */
+.save-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.save-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+.save-button:hover {
+  background-color: #218838;
+}
