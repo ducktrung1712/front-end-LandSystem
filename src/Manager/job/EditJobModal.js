@@ -9,7 +9,6 @@ const EditJobModal = ({ job, onClose, onJobUpdated }) => {
   const [jobTypeId, setJobTypeId] = useState(job.jobTypeId.toString());
   const [assignedTo, setAssignedTo] = useState(job.assignedTo ? job.assignedTo.toString() : '');
   const [description, setDescription] = useState(job.description);
-  const [image, setImage] = useState(null); // Nếu người dùng muốn thay đổi ảnh
   const [lands, setLands] = useState([]);
   const [jobTypes, setJobTypes] = useState([]);
   const [employees, setEmployees] = useState([]);
@@ -37,13 +36,6 @@ const EditJobModal = ({ job, onClose, onJobUpdated }) => {
     };
     fetchData();
   }, []);
-
-  // Nếu bạn không xử lý ảnh, bạn có thể bỏ qua input file. Nếu cần, bạn có thể giữ lại.
-  const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
 
   // Khi submit, chúng ta gửi dữ liệu dưới dạng JSON.
   // Nếu backend chỉ xử lý JSON (với @RequestBody Job job) thì gửi JSON.
@@ -131,10 +123,6 @@ const EditJobModal = ({ job, onClose, onJobUpdated }) => {
                 placeholder="Nhập mô tả công việc"
                 required
               />
-            </div>
-            <div className="form-group">
-              <label>Chọn Ảnh (Nếu cần thay đổi):</label>
-              <input type="file" onChange={handleImageChange} accept="image/*" />
             </div>
             <div className="form-group button-group">
               <button type="submit">Lưu Thay Đổi</button>

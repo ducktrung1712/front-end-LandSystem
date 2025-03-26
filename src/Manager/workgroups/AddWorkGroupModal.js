@@ -8,28 +8,14 @@ function AddWorkGroupModal({ onClose, onWorkGroupAdded, initialData }) {
   const [deadline, setDeadline] = useState(initialData?.deadline || "");
   const [priority, setPriority] = useState(initialData?.priority || "Medium");
   const [status, setStatus] = useState(initialData?.status || "IN_PROGRESS");
-  const [image, setImage] = useState(initialData?.image || null); // Base64
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  // Xử lý khi người dùng chọn file ảnh
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result.split(",")[1];
-        setImage(base64String);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Kiểm tra các trường bắt buộc
-    if (!name.trim() || !description.trim() || !deadline || !image) {
-      setError("Vui lòng điền đầy đủ thông tin, bao gồm hình ảnh.");
+    if (!name.trim() || !description.trim() || !deadline ) {
+      setError("Vui lòng điền đầy đủ thông tin.");
       return;
     }
 
@@ -42,7 +28,6 @@ function AddWorkGroupModal({ onClose, onWorkGroupAdded, initialData }) {
         deadline,
         priority,
         status,
-        image, // Base64
       };
 
       if (initialData) {
@@ -84,30 +69,18 @@ function AddWorkGroupModal({ onClose, onWorkGroupAdded, initialData }) {
           <div className="form-group">
             <label>Ưu Tiên:</label>
             <select value={priority} onChange={(e) => setPriority(e.target.value)}>
-              <option value="High">High</option>
-              <option value="Medium">Medium</option>
-              <option value="Low">Low</option>
+              <option value="High">Cao</option>
+              <option value="Medium">Trung bình</option>
+              <option value="Low">thấp</option>
             </select>
           </div>
 
           <div className="form-group">
             <label>Trạng Thái:</label>
             <select value={status} onChange={(e) => setStatus(e.target.value)}>
-              <option value="IN_PROGRESS">IN_PROGRESS</option>
-              <option value="COMPLETED">COMPLETED</option>
+              <option value="IN_PROGRESS">Đang thực hiện</option>
+              <option value="COMPLETED">Hoàn thành</option>
             </select>
-          </div>
-
-          <div className="form-group">
-            <label>Hình Ảnh:</label>
-            <input type="file" accept="image/*" onChange={handleImageChange} />
-            {image && (
-              <img
-                src={`data:image/jpeg;base64,${image}`}
-                alt="Preview"
-                style={{ width: "100px", height: "auto", marginTop: "10px" }}
-              />
-            )}
           </div>
 
           <div className="form-buttons">

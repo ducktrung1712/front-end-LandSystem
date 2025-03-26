@@ -5,10 +5,13 @@ function EditUserModal({ user, onClose, onUserUpdated }) {
   const [fullName, setFullName] = useState(user.fullName);
   const [username, setUsername] = useState(user.username);
   const [email, setEmail] = useState(user.email);
-  const [password, setPassword] = useState(user.password);
+  const [password, setPassword] = useState("");
   const [role, setRole] = useState(user.role);
   const [workGroup, setWorkGroup] = useState(user.workGroup ? user.workGroup.id : ""); // Lưu ID nhóm
   const [workGroups, setWorkGroups] = useState([]); // Danh sách nhóm làm việc
+  const [hometown, setHometown] = useState(user.hometown || "");
+  const [phone, setPhone] = useState(user.phone || "");
+  const [birthday, setBirthday] = useState(user.birthday || ""); // Giữ định dạng YYYY-MM-DD
   const [error, setError] = useState("");
 
   // Lấy danh sách nhóm làm việc từ API khi modal mở
@@ -26,13 +29,29 @@ function EditUserModal({ user, onClose, onUserUpdated }) {
     e.preventDefault();
     setError("");
 
+    // Validate email
+    if (!email.includes("@")) {
+      setError("Email không hợp lệ.");
+      return;
+    }
+
+    // Validate phone number
+    const phoneRegex = /^(?:\+84|0)[0-9]{9,10}$/;
+    if (phone && !phoneRegex.test(phone)) {
+      setError("Số điện thoại không hợp lệ.");
+      return;
+    }
+
     const updatedUser = {
       fullName,
       username,
       email,
-      password,
+      password: password || user.password, // Nếu không nhập mật khẩu mới, giữ nguyên mật khẩu cũ
       role,
-      workGroup: workGroup ? parseInt(workGroup, 10) : null, // Gửi ID nhóm lên server
+      hometown,
+      phone,
+      birthday: birthday || null, // Nếu không nhập, gửi null
+      workGroup: workGroup ? { id: parseInt(workGroup, 10) } : null, // Đảm bảo gửi đúng định dạng
     };
 
     try {
@@ -79,12 +98,35 @@ function EditUserModal({ user, onClose, onUserUpdated }) {
             />
           </div>
           <div className="form-group">
-            <label>Mật khẩu:</label>
+            <label>Mật khẩu (bỏ trống nếu không đổi):</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Quê quán:</label>
+            <input
+              type="text"
+              value={hometown}
+              onChange={(e) => setHometown(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Số điện thoại:</label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Ngày sinh:</label>
+            <input
+              type="date"
+              value={birthday}
+              onChange={(e) => setBirthday(e.target.value)}
             />
           </div>
           <div className="form-group">

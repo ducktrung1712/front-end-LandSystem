@@ -98,7 +98,6 @@ function WorkGroupManagement() {
                 <th>Hạn chót</th>
                 <th>Ưu tiên</th>
                 <th>Trạng thái</th>
-                <th>Hình ảnh</th>
                 <th>Hành động</th>
               </tr>
             </thead>
@@ -111,21 +110,7 @@ function WorkGroupManagement() {
                   <td>{group.deadline}</td>
                   <td>{priorityMapping[group.priority] || "Không xác định"}</td>
                   <td>{statusMapping[group.status] || "Không xác định"}</td>
-                  <td>
-                    {group.image ? (
-                      <img
-                        src={`data:image/jpeg;base64,${group.image}`}
-                        alt="Hình ảnh nhóm công việc"
-                        className="workgroup-image"
-                      />
-                    ) : (
-                      <img
-                        src="/placeholder-image.png"
-                        alt="Không có ảnh"
-                        className="workgroup-image"
-                      />
-                    )}
-                  </td>
+
                   <td>
                     <button className="edit-button" onClick={() => handleEdit(group)}>✏️</button>
                     <button className="delete-button" onClick={() => handleDelete(group.id)}>🗑️</button>

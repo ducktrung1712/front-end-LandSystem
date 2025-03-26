@@ -1,136 +1,36 @@
-/* AddUserModal.css */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(3px);
-}
-
 .modal {
   background: #fff;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 12px;
   width: 90%;
-  max-width: 500px;
+  max-width: 450px; /* Giảm kích thước modal */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   animation: modalSlideIn 0.3s ease-out;
-}
-
-@keyframes modalSlideIn {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.modal h2 {
-  margin: 0 0 1.5rem 0;
-  color: #2c3e50;
-  font-size: 1.8rem;
-  text-align: center;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 1rem;
+  max-height: 90vh; /* Đảm bảo modal không bị tràn màn hình */
+  overflow: auto; /* Cho phép cuộn nếu nội dung dài */
 }
 
 .form-group {
-  margin-bottom: 1.2rem;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 0.6rem;
-  font-weight: 600;
-  color: #4a5568;
-  font-size: 0.9rem;
+  margin-bottom: 0.8rem; /* Giảm khoảng cách giữa các input */
 }
 
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 0.8rem;
+  padding: 0.6rem; /* Giảm padding để tiết kiệm không gian */
   border: 2px solid #e2e8f0;
   border-radius: 6px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
-}
-
-.form-group input::placeholder {
-  color: #a0aec0;
-  font-size: 0.9rem;
+  font-size: 0.9rem; /* Giảm kích thước chữ */
 }
 
 .form-actions {
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 1.5rem;
+  justify-content: space-between; /* Dàn đều các nút */
+  gap: 8px;
+  margin-top: 1rem; /* Giảm khoảng cách */
 }
 
 .form-actions button {
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.form-actions button[type="submit"] {
-  background-color: #4299e1;
-  color: white;
-}
-
-.form-actions button[type="submit"]:hover {
-  background-color: #3182ce;
-}
-
-.form-actions button[type="button"] {
-  background-color: #edf2f7;
-  color: #4a5568;
-}
-
-.form-actions button[type="button"]:hover {
-  background-color: #e2e8f0;
-}
-
-.error {
-  color: #c53030;
-  background-color: #fff5f5;
-  padding: 0.8rem;
-  border-radius: 6px;
-  margin-bottom: 1rem;
-  text-align: center;
-  border: 1px solid #fc8181;
-  font-size: 0.9rem;
-}
-
-/* Thêm style cho input number */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Định nghĩa cho Firefox */
-input[type="number"] {
-  appearance: textfield;
-  -moz-appearance: textfield;
+  padding: 0.6rem 1rem; /* Giảm padding của button */
+  font-size: 0.9rem; /* Giảm kích thước chữ */
 }

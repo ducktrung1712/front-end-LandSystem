@@ -8,7 +8,6 @@ const EditWorkGroupModal = ({ initialData, onClose, onSave }) => {
   const [deadline, setDeadline] = useState(initialData?.deadline || "");
   const [priority, setPriority] = useState(initialData?.priority || "Medium");
   const [status, setStatus] = useState(initialData?.status || "IN_PROGRESS");
-  const [image, setImage] = useState(initialData?.image || null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -29,7 +28,6 @@ const EditWorkGroupModal = ({ initialData, onClose, onSave }) => {
       deadline,
       priority,
       status,
-      image: image || null,
     };
 
     try {
@@ -44,17 +42,6 @@ const EditWorkGroupModal = ({ initialData, onClose, onSave }) => {
       setError("Lỗi khi cập nhật nhóm công việc. Vui lòng thử lại.");
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result.split(",")[1]); // Chỉ lấy phần base64
-      };
-      reader.readAsDataURL(file);
     }
   };
 
@@ -89,16 +76,6 @@ const EditWorkGroupModal = ({ initialData, onClose, onSave }) => {
             <option value="IN_PROGRESS">Đang thực hiện</option>
             <option value="COMPLETED">Hoàn thành</option>
           </select>
-
-          <label>Hình ảnh:</label>
-          <input type="file" accept="image/*" onChange={handleImageChange} />
-          {image && (
-            <img
-              src={`data:image/jpeg;base64,${image}`}
-              alt="Hình ảnh xem trước"
-              className="preview-image"
-            />
-          )}
 
           <div className="modal-actions">
             <button type="submit" disabled={loading}>

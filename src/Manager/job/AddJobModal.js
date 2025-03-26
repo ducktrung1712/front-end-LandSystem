@@ -9,8 +9,6 @@ const AddJobModal = ({ onClose, onJobAdded }) => {
   const [jobTypeId, setJobTypeId] = useState('');
   const [assignedTo, setAssignedTo] = useState('');
   const [description, setDescription] = useState('');
-  // Nếu bạn muốn upload ảnh, cần bổ sung xử lý sau (với backend hỗ trợ Multipart)
-  const [image, setImage] = useState(null);
   const [lands, setLands] = useState([]);
   const [jobTypes, setJobTypes] = useState([]);
   const [employees, setEmployees] = useState([]); // Danh sách nhân viên
@@ -39,12 +37,6 @@ const AddJobModal = ({ onClose, onJobAdded }) => {
     fetchData();
   }, []);
 
-  // Nếu cần xử lý ảnh, bạn có thể giữ hàm này; nếu không, bạn có thể bỏ qua.
-  const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-  };
 
   // Submit form: gửi dữ liệu dưới dạng JSON
   const handleSubmit = async (e) => {
@@ -136,10 +128,6 @@ const AddJobModal = ({ onClose, onJobAdded }) => {
                 placeholder="Nhập mô tả công việc"
                 required
               />
-            </div>
-            <div className="form-group">
-              <label>Hình Ảnh:</label>
-              <input type="file" onChange={handleImageChange} accept="image/*" />
             </div>
             <div className="form-group button-group">
               <button type="submit">Thêm Công Việc</button>
