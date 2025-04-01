@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import './home.css';
 import LandInspection from '../SoilInspection/LandInspection';
 import PersonalInfo from '../inforInspection/PersonalInfor';
-
+import TaskList from '../taskInspector/taskInspector';
+import ReportPage from '../reportInspector/reportInspector';
 function InspectorDashboard() {
   const [activeMenu, setActiveMenu] = useState(null);
 
@@ -53,6 +54,10 @@ function InspectorDashboard() {
           <LandInspection />
         ):activeMenu === "profile" ? (
           <PersonalInfo />
+        ):activeMenu === "jobs" ? (
+          <TaskList />
+        ):activeMenu === "reports" ? (
+          <ReportPage />
         ): activeMenu ? (
           <div className="content-box">
             <h2>{menuItems.find((item) => item.key === activeMenu)?.label}</h2>
