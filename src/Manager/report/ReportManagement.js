@@ -17,8 +17,6 @@ const ReportManagement = () => {
   const [selectedReport, setSelectedReport] = useState(null);
   const [viewModalVisible, setViewModalVisible] = useState(false);
 
-  // Lấy userId từ localStorage
-  const userId = localStorage.getItem("userId") || "";
 
   useEffect(() => {
     fetchReports();
@@ -43,22 +41,40 @@ const ReportManagement = () => {
     setSearchText(value);
   };
 
+  // Fixed date filter function
   const handleDateFilter = (dates) => {
-    setDateRange(dates);
+    if (dates && dates.length === 2) {
+      // Store moment objects with start of day and end of day to include the entire date range
+      setDateRange([dates[0].startOf('day'), dates[1].endOf('day')]);
+    } else {
+      setDateRange(null);
+    }
   };
 
-  const filteredReports = reports.filter((report) => {
-    const matchText = report.reportName && report.reportName.toLowerCase().includes(searchText.toLowerCase());
+  // Sửa lại logic lọc ngày
+const filteredReports = reports.filter((report) => {
+  // Lọc theo văn bản
+  const matchText = !searchText || 
+    (report.reportName && report.reportName.toLowerCase().includes(searchText.toLowerCase()));
+  
+  // Lọc theo phạm vi ngày
+  let matchDate = true;
+  if (dateRange && dateRange.length === 2 && report.reportDate) {
+    // Chuyển đổi chuỗi ngày từ dữ liệu thành đối tượng moment
+    // Đảm bảo chỉ lấy phần ngày (YYYY-MM-DD) từ chuỗi để tránh vấn đề múi giờ
+    const reportDateStr = report.reportDate.substring(0, 10);
+    const reportDate = moment(reportDateStr, 'YYYY-MM-DD');
     
-    let matchDate = true;
-    if (dateRange && dateRange[0] && dateRange[1] && report.reportDate) {
-      const reportDate = moment(report.reportDate);
-      matchDate = reportDate.isSameOrAfter(dateRange[0], "day") && 
-                  reportDate.isSameOrBefore(dateRange[1], "day");
-    }
-
-    return matchText && matchDate;
-  });
+    // Chuyển đổi phạm vi ngày tìm kiếm sang cùng định dạng để so sánh
+    const startDate = dateRange[0].format('YYYY-MM-DD');
+    const endDate = dateRange[1].format('YYYY-MM-DD');
+    
+    // So sánh theo định dạng chuỗi để tránh vấn đề về múi giờ
+    matchDate = reportDateStr >= startDate && reportDateStr <= endDate;
+  }
+  
+  return matchText && matchDate;
+});
 
   const handleDelete = async (id) => {
     try {
@@ -183,8 +199,8 @@ const ReportManagement = () => {
       {/* Bộ lọc */}
       <div className="filters">
         <Input
-          placeholder="Tìm kiếm báo cáo"
-          style={{ width: 200, marginRight: 10 }}
+          placeholder="Tìm kiếm theo tên, người tạo hoặc địa điểm"
+          style={{ width: 300, marginRight: 10 }}
           onChange={(e) => handleSearch(e.target.value)}
           allowClear
         />
@@ -213,6 +229,11 @@ const ReportManagement = () => {
         </div>
       ) : (
         <>
+          {/* Thêm thông tin về số lượng báo cáo */}
+          <div className="filter-info">
+            <p>Tìm thấy {filteredReports.length} báo cáo</p>
+          </div>
+          
           {/* Bảng danh sách báo cáo */}
           <Table 
             dataSource={filteredReports} 
